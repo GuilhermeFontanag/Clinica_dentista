@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   await carregarDadosRecepcao();
 });
 
-
 async function carregarDadosRecepcao() {
   const containerConsultas = document.getElementById('recepcao-consultas-container');
   const containerPacientes = document.getElementById('recepcao-pacientes-container');
@@ -79,7 +78,6 @@ function atualizarEstatisticasRecepcao() {
   document.getElementById('stat-total-dentistas').textContent = listaDentistasRecepcao.length || 3;
 }
 
-
 function atualizarSelectsFormularios() {
   const selectPac = document.getElementById('consulta-paciente-select');
   if (selectPac) {
@@ -99,7 +97,6 @@ function atualizarSelectsFormularios() {
     `).join('');
   }
 }
-
 
 function renderTabelaConsultasRecepcao(consultas) {
   const container = document.getElementById('recepcao-consultas-container');
@@ -171,9 +168,6 @@ function renderTabelaConsultasRecepcao(consultas) {
   `;
 }
 
-/**
- * Filtro de Consultas por Status
- */
 function filtrarConsultas() {
   const statusFiltro = document.getElementById('filtro-status-consulta').value;
   if (!statusFiltro) {
@@ -185,9 +179,6 @@ function filtrarConsultas() {
   renderTabelaConsultasRecepcao(filtradas);
 }
 
-/**
- * Renderiza Tabela de Pacientes
- */
 function renderTabelaPacientesRecepcao(pacientes) {
   const container = document.getElementById('recepcao-pacientes-container');
 
@@ -258,9 +249,6 @@ function renderTabelaPacientesRecepcao(pacientes) {
   `;
 }
 
-/**
- * Filtragem de Pacientes na Recepção
- */
 function filtrarPacientesRecepcao(termo) {
   const busca = (termo || '').toLowerCase().trim();
   if (!busca) {
@@ -276,9 +264,6 @@ function filtrarPacientesRecepcao(termo) {
   renderTabelaPacientesRecepcao(filtrados);
 }
 
-/**
- * Modal Novo Paciente (POST /api/dentista)
- */
 function openModalNovoPaciente() {
   document.getElementById('form-novo-paciente').reset();
   UI.openModal('modal-novo-paciente');
@@ -302,10 +287,10 @@ async function handleCadastrarPaciente(event) {
       UI.toast(`Paciente "${data.nome}" cadastrado com sucesso!`, 'success');
       form.reset();
 
-      // Recarrega lista e atualiza em tempo real
+      
       await carregarDadosRecepcao();
 
-      // Pergunta se deseja já agendar a primeira consulta para o novo paciente
+      
       setTimeout(() => {
         UI.confirm({
           title: 'Agendar Primeira Consulta?',
@@ -328,9 +313,6 @@ async function handleCadastrarPaciente(event) {
   }
 }
 
-/**
- * Modal de Consulta (Agendar / Remarcar)
- */
 function openModalNovaConsulta() {
   document.getElementById('modal-consulta-title').textContent = 'Agendar Nova Consulta';
   document.getElementById('consulta-id').value = '';
@@ -419,9 +401,6 @@ async function handleSalvarConsulta(event) {
   }
 }
 
-/**
- * Exclusão de Consulta (DELETE /api/recepcionista/{id})
- */
 function excluirConsultaRecepcao(consultaId) {
   UI.confirm({
     title: 'Excluir Agendamento',
@@ -453,9 +432,6 @@ function excluirConsultaRecepcao(consultaId) {
   });
 }
 
-/**
- * Edição de Paciente (PUT /api/dentista/{id})
- */
 function abrirModalEditarPaciente(pacienteId) {
   const p = listaPacientesRecepcao.find(item => item.id === pacienteId);
   if (!p) return;
@@ -500,9 +476,6 @@ async function handleSalvarEdicaoPaciente(event) {
   }
 }
 
-/**
- * Exclusão de Paciente (DELETE /api/dentista/{id})
- */
 function excluirPacienteRecepcao(pacienteId, pacienteNome) {
   UI.confirm({
     title: 'Excluir Cadastro de Paciente',

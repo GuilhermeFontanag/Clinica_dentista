@@ -1,13 +1,7 @@
-/**
- * CLÍNICA ODONTOLÓGICA SORRISO CLARO - UTILITÁRIOS DE INTERFACE (UI)
- * Gerenciador de Estados: Carregamento, Sucesso, Lista Vazia, Erros de Conexão
- * Notificações Toast, Modais e Formatação
- */
+
 
 const UI = {
-  /**
-   * Renderiza sistema de Toasts flutuantes com animação suave
-   */
+  
   toast(message, type = 'info', duration = 4000) {
     let container = document.querySelector('.toast-container');
     if (!container) {
@@ -52,9 +46,7 @@ const UI = {
     }, duration);
   },
 
-  /**
-   * Renderiza Estado de Carregamento (Skeleton / Spinner)
-   */
+  
   renderLoading(targetElement, message = 'Carregando registros da clínica...') {
     if (typeof targetElement === 'string') targetElement = document.querySelector(targetElement);
     if (!targetElement) return;
@@ -67,9 +59,7 @@ const UI = {
     `;
   },
 
-  /**
-   * Renderiza Estado de Lista Vazia (Empty State) com ação
-   */
+  
   renderEmpty(targetElement, { title = 'Nenhum registro encontrado', message = 'Não há itens cadastrados nesta seção no momento.', actionText = null, actionCallback = null } = {}) {
     if (typeof targetElement === 'string') targetElement = document.querySelector(targetElement);
     if (!targetElement) return;
@@ -102,9 +92,7 @@ const UI = {
     }
   },
 
-  /**
-   * Renderiza Estado de Erro de Conexão ou Validação
-   */
+  
   renderError(targetElement, { message = 'Falha de conexão com a API', retryCallback = null } = {}) {
     if (typeof targetElement === 'string') targetElement = document.querySelector(targetElement);
     if (!targetElement) return;
@@ -137,9 +125,7 @@ const UI = {
     }
   },
 
-  /**
-   * Controle de Modais
-   */
+  
   openModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
@@ -156,9 +142,7 @@ const UI = {
     }
   },
 
-  /**
-   * Modal de Confirmação Rápida
-   */
+  
   confirm({ title = 'Confirmar Ação', message = 'Tem certeza que deseja continuar?', onConfirm = () => {} }) {
     let confirmModal = document.getElementById('global-confirm-modal');
     if (!confirmModal) {
@@ -198,9 +182,7 @@ const UI = {
     UI.openModal('global-confirm-modal');
   },
 
-  /**
-   * Formatadores Auxiliares
-   */
+  
   formatDate(dateString) {
     if (!dateString) return '-';
     try {
@@ -236,9 +218,7 @@ const UI = {
     }
   },
 
-  /**
-   * Configura Barra de Navegação Superior e Perfil
-   */
+  
   setupNavigation(currentPage) {
     const session = UserSession.get();
     const badgeContainer = document.querySelector('.user-badge-container');
@@ -266,7 +246,7 @@ const UI = {
       `;
     }
 
-    // Marca link ativo
+    
     document.querySelectorAll('.nav-item').forEach(item => {
       const link = item.querySelector('a');
       if (link && link.getAttribute('href') === currentPage) {

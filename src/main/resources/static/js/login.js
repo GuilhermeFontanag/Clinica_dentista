@@ -1,14 +1,9 @@
-/**
- * CLÍNICA ODONTOLÓGICA SORRISO CLARO - CONTROLE DE LOGIN E CADASTRO
- */
+
 
 document.addEventListener('DOMContentLoaded', () => {
   updateRegisterFormFields();
 });
 
-/**
- * Alterna entre abas de Login e Cadastro
- */
 function switchAuthTab(tab) {
   const loginTab = document.getElementById('tab-login');
   const registerTab = document.getElementById('tab-register');
@@ -29,10 +24,6 @@ function switchAuthTab(tab) {
   }
 }
 
-/**
- * Login Sem Validação (conforme requisito)
- * Permite selecionar Paciente, Dentista ou Recepcionista e navegar diretamente
- */
 function handleLoginSubmit(event) {
   event.preventDefault();
 
@@ -43,7 +34,7 @@ function handleLoginSubmit(event) {
 
   UI.toast(`Bem-vindo(a), ${session.nome}! Acessando como ${selectedRole.toUpperCase()}...`, 'success', 2500);
 
-  // Redirecionamento suave
+  
   setTimeout(() => {
     switch (selectedRole) {
       case 'paciente':
@@ -61,9 +52,6 @@ function handleLoginSubmit(event) {
   }, 400);
 }
 
-/**
- * Renderiza os campos dinâmicos de cadastro baseados no perfil selecionado
- */
 function updateRegisterFormFields() {
   const container = document.getElementById('dynamic-register-fields');
   const selectedRole = document.querySelector('input[name="register_role"]:checked').value;
@@ -179,9 +167,6 @@ function updateRegisterFormFields() {
   }
 }
 
-/**
- * Envia o cadastro para a API Spring Boot
- */
 async function handleRegisterSubmit(event) {
   event.preventDefault();
 
@@ -206,7 +191,7 @@ async function handleRegisterSubmit(event) {
     } else if (selectedRole === 'dentista') {
       result = await ClinicaAPI.dentistas.criar(data);
     } else if (selectedRole === 'recepcionista') {
-      // Recepcionista no backend
+      
       const payload = {
         nome: data.nome,
         matricula: data.matricula,
@@ -236,7 +221,7 @@ async function handleRegisterSubmit(event) {
       `;
       form.reset();
 
-      // Pergunta se deseja já entrar com o usuário cadastrado
+      
       setTimeout(() => {
         UserSession.login(selectedRole, data.nome);
         UI.toast(`Redirecionando para o painel do ${selectedRole}...`, 'info', 2000);
