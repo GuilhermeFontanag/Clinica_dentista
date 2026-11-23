@@ -3,15 +3,19 @@ package com._dt.senai.controller;
 import com._dt.senai.entities.Dentista;
 import com._dt.senai.repository.DentistaRepository;
 import org.springframework.web.bind.annotation.*;
-import java.util.*;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("api/dentista")
 public class DentistaController {
 
     private final DentistaRepository repository;
+
     public DentistaController(DentistaRepository repository) {
         this.repository = repository;
     }
+
     @PostMapping
     public String criar_dentista(@RequestBody Dentista dentista){
         try {
@@ -28,30 +32,24 @@ public class DentistaController {
     }
 
     @DeleteMapping("/{id}")
-    public String deletar(@PathVariable int id){
+    public void  deletar(@PathVariable Integer id){
         repository.deleteById(id);
-        return "excluido com sucesso";
     }
 
     @GetMapping("/{id}")
-    public void buscarId(@PathVariable int id){
+    public void buscarId(@PathVariable Integer id){
         repository.findById(id);
     }
+
     @PutMapping("/{id}")
-    public void atualizar(@PathVariable int id, Dentista d ){
+    public void atualizar(@PathVariable Integer id, @RequestBody Dentista d) {
         Dentista dentista = repository.getReferenceById(id);
         dentista.setNome(d.getNome());
-        dentista.setConvenio(d.getConvenio());
-        dentista.setCpf(d.getCpf());
-        dentista.setData_nascimento(d.getData_nascimento());
-        dentista.setEmail(d.getEmail());
-        dentista.setId(d.getId());
-        dentista.setObservacoes_clinicas(d.getObservacoes_clinicas());
+        dentista.setCro(d.getCro());
+        dentista.setEspecialidade(d.getEspecialidade());
         dentista.setTelefone(d.getTelefone());
+        dentista.setAtivo(d.getAtivo());
 
         repository.save(dentista);
     }
-
-
-
 }
