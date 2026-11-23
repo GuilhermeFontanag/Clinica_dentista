@@ -1,10 +1,7 @@
-/* ==========================================================================
-   CLÍNICA ODONTOLÓGICA SORRISO CLARO - SISTEMA INTEGRADO DE GESTÃO
-   Identidade Visual: Tons de Azul Clínico, Minimalista e Acolhedor
-   ========================================================================== */
+
 
 :root {
-  /* Paleta Primária - Azul Clínico / Odonto */
+  
   --primary-900: #0c4a6e;
   --primary-800: #075985;
   --primary-700: #0369a1;
@@ -16,7 +13,7 @@
   --primary-100: #e0f2fe;
   --primary-50:  #f0f9ff;
 
-  /* Neutros e Superfícies */
+  
   --bg-page: #f8fafc;
   --surface: #ffffff;
   --surface-alt: #f1f5f9;
@@ -24,13 +21,13 @@
   --border-light: #e2e8f0;
   --border-focus: #38bdf8;
 
-  /* Tipografia */
+  
   --text-main: #0f172a;
   --text-muted: #475569;
   --text-light: #94a3b8;
   --text-inverse: #ffffff;
 
-  /* Feedback e Status */
+  
   --success: #059669;
   --success-bg: #ecfdf5;
   --success-border: #a7f3d0;
@@ -47,7 +44,7 @@
   --info-bg: #f0f9ff;
   --info-border: #bae6fd;
 
-  /* Efeitos e Sombras */
+  
   --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
   --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.03);
@@ -58,13 +55,12 @@
   --radius-lg: 16px;
   --radius-full: 9999px;
 
-  /* Transições Suaves */
+  
   --transition-fast: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Reset Global */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -87,9 +83,6 @@ body {
   background: linear-gradient(180deg, #f0f9ff 0%, #f8fafc 240px);
 }
 
-/* ==========================================================================
-   TIPOGRAFIA & TÍTULOS
-   ========================================================================== */
 h1, h2, h3, h4 {
   color: var(--primary-900);
   font-weight: 700;
@@ -117,9 +110,6 @@ a:hover {
   color: var(--primary-800);
 }
 
-/* ==========================================================================
-   LAYOUT GERAL: HEADER / NAVBAR
-   ========================================================================== */
 .site-header {
   position: sticky;
   top: 0;
@@ -233,9 +223,6 @@ a:hover {
   transform: translateY(-1px);
 }
 
-/* ==========================================================================
-   CONTEÚDO PRINCIPAL
-   ========================================================================== */
 .main-wrapper {
   flex: 1;
   max-width: 1240px;
@@ -256,7 +243,6 @@ a:hover {
   }
 }
 
-/* Page Header Hero */
 .page-hero {
   margin-bottom: 2rem;
   display: flex;
@@ -276,9 +262,6 @@ a:hover {
   margin-top: 0.75rem;
 }
 
-/* ==========================================================================
-   GRID E CARDS
-   ========================================================================== */
 .grid-dashboard {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -325,7 +308,6 @@ a:hover {
   height: 22px;
 }
 
-/* Stat Cards */
 .stat-card {
   display: flex;
   align-items: center;
@@ -374,9 +356,6 @@ a:hover {
   font-weight: 500;
 }
 
-/* ==========================================================================
-   FORMULÁRIOS & CAMPOS
-   ========================================================================== */
 .form-group {
   margin-bottom: 1.2rem;
   position: relative;
@@ -462,9 +441,6 @@ textarea.form-control {
   display: block;
 }
 
-/* ==========================================================================
-   BOTÕES E AÇÕES
-   ========================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -559,9 +535,6 @@ textarea.form-control {
   pointer-events: none;
 }
 
-/* ==========================================================================
-   TABELAS & LISTAGENS DE DADOS
-   ========================================================================== */
 .table-responsive {
   width: 100%;
   overflow-x: auto;
@@ -617,9 +590,6 @@ textarea.form-control {
   gap: 0.4rem;
 }
 
-/* ==========================================================================
-   BADGES DE STATUS E INFORMAÇÃO
-   ========================================================================== */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -661,12 +631,6 @@ textarea.form-control {
   border: 1px solid var(--warning-border);
 }
 
-/* ==========================================================================
-   ESTADOS VISUAIS DA APLICAÇÃO (MANDATÓRIO)
-   Carregamento, Sucesso, Lista Vazia, Falha de Conexão
-   ========================================================================== */
-
-/* 1. Estado de Carregamento (Skeleton & Spinner) */
 .loading-spinner {
   display: inline-block;
   width: 24px;
@@ -715,7 +679,6 @@ textarea.form-control {
   margin-bottom: 12px;
 }
 
-/* 2. Estado de Lista Vazia (Empty State) */
 .empty-state {
   display: flex;
   flex-direction: column;
@@ -758,7 +721,6 @@ textarea.form-control {
   margin-bottom: 1.25rem;
 }
 
-/* 3. Estado de Falha / Erro de Conexão */
 .alert {
   display: flex;
   align-items: flex-start;
@@ -819,7 +781,6 @@ textarea.form-control {
   gap: 0.5rem;
 }
 
-/* 4. Sistema de Toast Notifications (Sucesso e Alertas Flutuantes) */
 .toast-container {
   position: fixed;
   bottom: 24px;
@@ -890,9 +851,6 @@ textarea.form-control {
   transition: all var(--transition-fast);
 }
 
-/* ==========================================================================
-   MODAIS E DIÁLOGOS DE CONFIRMAÇÃO
-   ========================================================================== */
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -974,9 +932,6 @@ textarea.form-control {
   gap: 0.75rem;
 }
 
-/* ==========================================================================
-   PÁGINA DE LOGIN & CADASTRO (ESPECÍFICO)
-   ========================================================================== */
 .auth-page {
   min-height: 100vh;
   display: flex;
@@ -1103,9 +1058,6 @@ textarea.form-control {
   color: var(--primary-800);
 }
 
-/* ==========================================================================
-   FOOTER
-   ========================================================================== */
 .site-footer {
   background: var(--surface);
   border-top: 1px solid var(--border-light);
@@ -1125,9 +1077,6 @@ textarea.form-control {
   gap: 1rem;
 }
 
-/* ==========================================================================
-   RESPONSIVIDADE
-   ========================================================================== */
 @media (max-width: 768px) {
   .header-container {
     flex-direction: column;
