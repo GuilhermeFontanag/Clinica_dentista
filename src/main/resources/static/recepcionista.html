@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recepção & Agendamentos - Clínica Odontológica Sorriso Claro</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%230284c7%22><path d=%22M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9c.83 0 1.5-.67 1.5-1.5S7.83 8 7 8s-1.5.67-1.5 1.5S6.17 11 7 11zm10 0c.83 0 1.5-.67 1.5-1.5S17.83 8 17 8s-1.5.67-1.5 1.5.67 1.5 1.5 1.5zm-5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z%22/></svg>">
+</head>
+<body>
+
+  <!-- Barra de Navegação Superior Multipage -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>Sorriso Claro</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li class="nav-item"><a href="index.html">Início / Login</a></li>
+          <li class="nav-item"><a href="paciente.html">Área do Paciente</a></li>
+          <li class="nav-item"><a href="dentista.html">Painel do Dentista</a></li>
+          <li class="nav-item active"><a href="recepcionista.html">Recepção & Agenda</a></li>
+        </ul>
+      </nav>
+
+      <div class="user-badge-container">
+        <!-- Renderizado dinamicamente via UI.setupNavigation -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="main-wrapper">
+    <section class="page-hero">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <h1 id="welcome-recepcao-title">Central de Recepção & Agendamentos</h1>
+          <p class="subtitle">Gestão completa de pacientes, horários, remarcações e controle da clínica.</p>
+        </div>
+        <div class="hero-actions">
+          <button class="btn btn-secondary btn-sm" onclick="openModalNovoPaciente()">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+            </svg>
+            + Cadastrar Paciente
+          </button>
+          <button class="btn btn-primary btn-sm" onclick="openModalNovaConsulta()">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            + Agendar Consulta
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stat Cards da Recepção -->
+    <div class="grid-dashboard">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </div>
+        <div class="stat-info">
+          <div class="stat-value" id="stat-total-pacientes">0</div>
+          <div class="stat-label">Pacientes Ativos na Clínica</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <div class="stat-info">
+          <div class="stat-value" id="stat-total-agendamentos">0</div>
+          <div class="stat-label">Consultas Registradas</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon" style="background-color: var(--primary-100); color: var(--primary-700);">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+        </div>
+        <div class="stat-info">
+          <div class="stat-value" id="stat-total-dentistas">3</div>
+          <div class="stat-label">Dentistas no Corpo Clínico</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção 1: Gestão de Agendamentos (Consultas) -->
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+          Grade Geral de Consultas & Agendamentos
+        </h2>
+
+        <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+          <select id="filtro-status-consulta" class="form-control" style="width:auto; padding:0.4rem 2rem 0.4rem 0.8rem; font-size:0.85rem;" onchange="filtrarConsultas()">
+            <option value="">Todos os Status</option>
+            <option value="Agendada">Agendadas</option>
+            <option value="Concluída">Concluídas</option>
+            <option value="Cancelada">Canceladas</option>
+          </select>
+          <button class="btn btn-outline btn-sm" onclick="carregarDadosRecepcao()" title="Sincronizar da API">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="recepcao-consultas-container">
+        <!-- Injetado dinamicamente via recepcionista.js -->
+      </div>
+    </div>
+
+    <!-- Seção 2: Cadastro e Gestão de Pacientes -->
+    <div class="card" style="margin-top:2rem;">
+      <div class="card-header">
+        <h2 class="card-title">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          Cadastro de Pacientes da Sorriso Claro
+        </h2>
+
+        <div style="display:flex; align-items:center; gap:0.5rem; max-width:320px; width:100%;">
+          <input type="text" id="input-busca-pacientes-recepcao" class="form-control" placeholder="Buscar paciente por nome ou CPF..." oninput="filtrarPacientesRecepcao(this.value)">
+        </div>
+      </div>
+
+      <div id="recepcao-pacientes-container">
+        <!-- Injetado dinamicamente via recepcionista.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal: Cadastrar Novo Paciente (POST /api/dentista) -->
+  <div class="modal-backdrop" id="modal-novo-paciente">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Cadastrar Novo Paciente</h3>
+        <button class="modal-close" onclick="UI.closeModal('modal-novo-paciente')">✕</button>
+      </div>
+      <form id="form-novo-paciente" onsubmit="handleCadastrarPaciente(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Nome Completo <span class="required">*</span></label>
+            <input type="text" name="nome" class="form-control" placeholder="Ex: Carlos Eduardo Lima" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">CPF (único) <span class="required">*</span></label>
+              <input type="text" name="cpf" class="form-control" placeholder="000.000.000-00" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Telefone / WhatsApp <span class="required">*</span></label>
+              <input type="tel" name="telefone" class="form-control" placeholder="(11) 97777-6655" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Data de Nascimento <span class="required">*</span></label>
+              <input type="date" name="data_nascimento" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Convênio Odontológico <span class="required">*</span></label>
+              <select name="convenio" class="form-control" required>
+                <option value="Particular">Particular</option>
+                <option value="Unimed Odonto">Unimed Odonto</option>
+                <option value="Bradesco Dental">Bradesco Dental</option>
+                <option value="Amil Dental">Amil Dental</option>
+                <option value="SulAmérica Odonto">SulAmérica Odonto</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Alertas Clínicos & Alergias Importantes</label>
+            <textarea name="observacoes_clinicas" class="form-control" placeholder="Ex: Alergia a Dipirona, anestésicos vasoconstritores, hipertensão..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="UI.closeModal('modal-novo-paciente')">Cancelar</button>
+          <button type="submit" id="btn-submit-novo-paciente" class="btn btn-primary btn-sm">Salvar Paciente na API</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Agendar / Remarcar Consulta -->
+  <div class="modal-backdrop" id="modal-consulta">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-consulta-title">Agendar Consulta</h3>
+        <button class="modal-close" onclick="UI.closeModal('modal-consulta')">✕</button>
+      </div>
+      <form id="form-consulta" onsubmit="handleSalvarConsulta(event)">
+        <div class="modal-body">
+          <input type="hidden" name="id" id="consulta-id">
+
+          <div class="form-group">
+            <label class="form-label">Paciente <span class="required">*</span></label>
+            <select name="paciente_selecao" id="consulta-paciente-select" class="form-control" required>
+              <!-- Preenchido dinamicamente com pacientes cadastrados -->
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Dentista Responsável <span class="required">*</span></label>
+              <select name="id_dentista" id="consulta-dentista-select" class="form-control" required>
+                <!-- Preenchido dinamicamente -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Data da Consulta <span class="required">*</span></label>
+              <input type="date" name="data" id="consulta-data" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Procedimento <span class="required">*</span></label>
+              <select name="procedimento" id="consulta-procedimento" class="form-control" required>
+                <option value="Avaliação Inicial">Avaliação Inicial</option>
+                <option value="Limpeza / Profilaxia">Limpeza / Profilaxia</option>
+                <option value="Restauração Dentária">Restauração Dentária</option>
+                <option value="Tratamento Endodôntico (Canal)">Tratamento Endodôntico (Canal)</option>
+                <option value="Cirurgia / Extração">Cirurgia / Extração</option>
+                <option value="Manutenção Ortodôntica">Manutenção Ortodôntica</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Status da Consulta <span class="required">*</span></label>
+              <select name="status" id="consulta-status" class="form-control" required>
+                <option value="Agendada">Agendada</option>
+                <option value="Concluída">Concluída</option>
+                <option value="Cancelada">Cancelada</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Observações / Observação do Atendimento</label>
+            <textarea name="observacao" id="consulta-observacao" class="form-control" placeholder="Anotações de remarcação ou recomendações..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="UI.closeModal('modal-consulta')">Cancelar</button>
+          <button type="submit" id="btn-submit-consulta" class="btn btn-primary btn-sm">Salvar Agendamento</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Editar Dados do Paciente (PUT /api/dentista/{id}) -->
+  <div class="modal-backdrop" id="modal-editar-paciente-recepcao">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Atualizar Dados do Paciente</h3>
+        <button class="modal-close" onclick="UI.closeModal('modal-editar-paciente-recepcao')">✕</button>
+      </div>
+      <form id="form-editar-paciente-recepcao" onsubmit="handleSalvarEdicaoPaciente(event)">
+        <div class="modal-body">
+          <input type="hidden" name="id" id="edit-rec-paciente-id">
+
+          <div class="form-group">
+            <label class="form-label">Nome Completo <span class="required">*</span></label>
+            <input type="text" name="nome" id="edit-rec-paciente-nome" class="form-control" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Telefone / WhatsApp <span class="required">*</span></label>
+              <input type="tel" name="telefone" id="edit-rec-paciente-telefone" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Convênio <span class="required">*</span></label>
+              <select name="convenio" id="edit-rec-paciente-convenio" class="form-control" required>
+                <option value="Particular">Particular</option>
+                <option value="Unimed Odonto">Unimed Odonto</option>
+                <option value="Bradesco Dental">Bradesco Dental</option>
+                <option value="Amil Dental">Amil Dental</option>
+                <option value="SulAmérica Odonto">SulAmérica Odonto</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Observações Clínicas e Alergias</label>
+            <textarea name="observacoes_clinicas" id="edit-rec-paciente-observacoes" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" onclick="UI.closeModal('modal-editar-paciente-recepcao')">Cancelar</button>
+          <button type="submit" class="btn btn-primary btn-sm">Atualizar na API</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p>© 2026 Clínica Odontológica Sorriso Claro. Todos os direitos reservados.</p>
+      <p>Sorriso Claro - Módulo de Recepção e Agendamento</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/recepcionista.js"></script>
+</body>
+</html>
