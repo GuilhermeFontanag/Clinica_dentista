@@ -77,16 +77,16 @@ A camada de serviço (`src/main/resources/static/js/api.js`) mapeia as rotas RES
 
 | Funcionalidade | Método HTTP | Rota API | Entidade Backend |
 |---|---|---|---|
-| Listar Pacientes / Fichas | `GET` | `/api/dentista` | `Dentista.java` (campos: CPF, Convênio, Alergias) |
-| Cadastrar Paciente | `POST` | `/api/dentista` | `Dentista.java` |
-| Atualizar Paciente | `PUT` | `/api/dentista/{id}` | `Dentista.java` |
-| Excluir Paciente | `DELETE` | `/api/dentista/{id}` | `Dentista.java` |
-| Listar Dentistas | `GET` | `/api/paciente` | `Paciente.java` (campos: CRO, Especialidade) |
-| Cadastrar Dentista | `POST` | `/api/paciente` | `Paciente.java` |
-| Listar Consultas / Recepção | `GET` | `/api/recepcionista` | `Recepcionista.java` |
-| Agendar Consulta | `POST` | `/api/recepcionista` | `Recepcionista.java` |
-| Atualizar / Evoluir Consulta | `PUT` | `/api/recepcionista/{id}` | `Recepcionista.java` |
-| Excluir Consulta | `DELETE` | `/api/recepcionista/{id}` | `Recepcionista.java` |
+| Listar Pacientes / Fichas | `GET` | `/api/paciente` | `Paciente.java` (campos: CPF, Convênio, Alergias) |
+| Cadastrar Paciente | `POST` | `/api/paciente` | `Paciente.java` |
+| Atualizar Paciente | `PUT` | `/api/paciente/{id}` | `Paciente.java` |
+| Excluir Paciente | `DELETE` | `/api/paciente/{id}` | `Paciente.java` |
+| Listar Dentistas | `GET` | `/api/dentista` | `Dentista.java` (campos: CRO, Especialidade, Ativo) |
+| Cadastrar Dentista | `POST` | `/api/dentista` | `Dentista.java` |
+| Listar Consultas | `GET` | `/api/consulta` | `Consulta.java` |
+| Agendar Consulta | `POST` | `/api/consulta` | `Consulta.java` |
+| Atualizar / Evoluir Consulta | `PUT` | `/api/consulta/{id}` | `Consulta.java` |
+| Excluir Consulta | `DELETE` | `/api/consulta/{id}` | `Consulta.java` |
 
 ---
 
