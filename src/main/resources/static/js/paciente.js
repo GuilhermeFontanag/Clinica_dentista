@@ -1,6 +1,4 @@
-/**
- * CLÍNICA ODONTOLÓGICA SORRISO CLARO - CONTROLE DO PORTAL DO PACIENTE
- */
+
 
 let currentPatient = null;
 let patientConsultas = [];
@@ -15,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     welcomeEl.textContent = `Olá, ${session.nome}!`;
   }
 
-  // Define data mínima para hoje no agendamento
+  
   const inputData = document.getElementById('input-data-consulta');
   if (inputData) {
     inputData.min = new Date().toISOString().split('T')[0];
@@ -27,9 +25,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   await carregarConsultasPaciente();
 });
 
-/**
- * Carrega lista de dentistas da API para alimentar o <select> do agendamento
- */
 async function carregarCorpoClinico() {
   const select = document.getElementById('select-dentista-agendamento');
   if (!select) return;
@@ -46,14 +41,11 @@ async function carregarCorpoClinico() {
   }
 }
 
-/**
- * Carrega ou simula os dados cadastrais do paciente atual
- */
 async function carregarPerfilPaciente(session) {
   try {
     const res = await ClinicaAPI.pacientes.listar();
     if (res.success && Array.isArray(res.data) && res.data.length > 0) {
-      // Tenta encontrar por nome ou usa o primeiro registro
+      
       const found = res.data.find(p => p.nome && p.nome.toLowerCase().includes(session.nome.toLowerCase())) || res.data[0];
       currentPatient = found;
     } else {
@@ -95,9 +87,6 @@ function renderPerfilPacienteUI() {
   document.getElementById('stat-alergias').textContent = obs.toLowerCase().includes('alergia') ? 'Alergia Registrada' : 'Sem Restrições';
 }
 
-/**
- * Carrega a lista de consultas da API
- */
 async function carregarConsultasPaciente() {
   const container = document.getElementById('consultas-container');
   UI.renderLoading(container, 'Consultando agendamentos na clínica...');
@@ -114,7 +103,7 @@ async function carregarConsultasPaciente() {
 
   const rawList = Array.isArray(res.data) ? res.data : [];
   
-  // Filtra consultas ou exibe todas
+  
   patientConsultas = rawList.filter(c => c.procedimento && c.procedimento !== 'Cadastro de Recepção');
 
   document.getElementById('stat-total-consultas').textContent = patientConsultas.length;
@@ -129,7 +118,7 @@ async function carregarConsultasPaciente() {
     return;
   }
 
-  // Renderiza a tabela de consultas
+  
   renderTabelaConsultas(patientConsultas);
 }
 
@@ -193,9 +182,6 @@ function renderTabelaConsultas(consultas) {
   `;
 }
 
-/**
- * Abertura e manipulação do modal de agendamento
- */
 function openAgendarModal() {
   UI.openModal('modal-agendar');
 }
@@ -229,7 +215,7 @@ async function handleSalvarAgendamento(event) {
       form.reset();
       UI.toast('Consulta agendada com sucesso na Sorriso Claro!', 'success');
       
-      // Atualização imediata sem F5
+      
       await carregarConsultasPaciente();
     } else {
       UI.toast(`Não foi possível agendar: ${res.error}`, 'danger');
@@ -242,9 +228,6 @@ async function handleSalvarAgendamento(event) {
   }
 }
 
-/**
- * Cancelamento de consulta com confirmação e exclusão ou atualização
- */
 function solicitarCancelamento(consultaId) {
   UI.confirm({
     title: 'Cancelar Agendamento',
@@ -256,7 +239,7 @@ function solicitarCancelamento(consultaId) {
       if (res.success) {
         UI.toast('Consulta cancelada e removida com sucesso!', 'success');
         
-        // Remove dinamicamente da lista local sem reload
+        
         patientConsultas = patientConsultas.filter(c => c.id !== consultaId);
         document.getElementById('stat-total-consultas').textContent = patientConsultas.length;
 
@@ -281,9 +264,6 @@ function solicitarCancelamento(consultaId) {
   });
 }
 
-/**
- * Edição dos dados cadastrais do paciente
- */
 function openEditarDadosModal() {
   if (!currentPatient) return;
   document.getElementById('edit-patient-id').value = currentPatient.id || '';

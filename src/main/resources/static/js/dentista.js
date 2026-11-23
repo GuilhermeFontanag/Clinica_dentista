@@ -1,6 +1,4 @@
-/**
- * CLÍNICA ODONTOLÓGICA SORRISO CLARO - CONTROLE DO PAINEL DO DENTISTA
- */
+
 
 let listaConsultas = [];
 let listaPacientes = [];
@@ -18,9 +16,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   await carregarDadosDentista();
 });
 
-/**
- * Carrega consultas e pacientes em paralelo
- */
 async function carregarDadosDentista() {
   const containerConsultas = document.getElementById('dentista-consultas-container');
   const containerPacientes = document.getElementById('dentista-pacientes-container');
@@ -34,7 +29,7 @@ async function carregarDadosDentista() {
       ClinicaAPI.pacientes.listar()
     ]);
 
-    // Trata consultas
+    
     if (resConsultas.success) {
       const raw = Array.isArray(resConsultas.data) ? resConsultas.data : [];
       listaConsultas = raw.filter(c => c.procedimento && c.procedimento !== 'Cadastro de Recepção');
@@ -46,7 +41,7 @@ async function carregarDadosDentista() {
       });
     }
 
-    // Trata pacientes
+    
     if (resPacientes.success) {
       listaPacientes = Array.isArray(resPacientes.data) ? resPacientes.data : [];
       renderGradePacientes(listaPacientes);
@@ -65,9 +60,6 @@ async function carregarDadosDentista() {
   }
 }
 
-/**
- * Atualiza indicadores de atendimentos e alertas
- */
 function atualizarEstatisticasDentista() {
   const agendadas = listaConsultas.filter(c => !(c.status || '').toLowerCase().includes('concl') && !(c.status || '').toLowerCase().includes('cancel')).length;
   const concluidas = listaConsultas.filter(c => (c.status || '').toLowerCase().includes('concl')).length;
@@ -83,9 +75,6 @@ function atualizarEstatisticasDentista() {
   }
 }
 
-/**
- * Renderiza Grade de Atendimentos do Dentista
- */
 function renderGradeConsultas(consultas) {
   const container = document.getElementById('dentista-consultas-container');
 
@@ -98,7 +87,7 @@ function renderGradeConsultas(consultas) {
   }
 
   const rows = consultas.map(c => {
-    // Busca dados do paciente para ver se há alerta
+    
     const pac = listaPacientes.find(p => p.id === c.id_paciente || (p.nome && p.nome === c.nome)) || null;
     const temAlergia = pac && pac.observacoes_clinicas && pac.observacoes_clinicas.toLowerCase().includes('alergia');
 
@@ -161,9 +150,6 @@ function renderGradeConsultas(consultas) {
   `;
 }
 
-/**
- * Renderiza Fichas de Pacientes e Verificação de Alergias
- */
 function renderGradePacientes(pacientes) {
   const container = document.getElementById('dentista-pacientes-container');
 
@@ -207,9 +193,6 @@ function renderGradePacientes(pacientes) {
   `;
 }
 
-/**
- * Filtragem em tempo real de pacientes pelo campo de busca
- */
 function filtrarPacientes(termo) {
   const busca = (termo || '').toLowerCase().trim();
   if (!busca) {
@@ -226,9 +209,6 @@ function filtrarPacientes(termo) {
   renderGradePacientes(filtrados);
 }
 
-/**
- * Modal de Atendimento: Evolução Clínica
- */
 function abrirModalAtendimento(consultaId) {
   const c = listaConsultas.find(item => item.id === consultaId);
   if (!c) return;
@@ -276,7 +256,7 @@ async function handleSalvarAtendimento(event) {
       UI.closeModal('modal-atendimento');
       UI.toast(`Atendimento #${id} atualizado com sucesso!`, 'success');
 
-      // Atualização imediata do DOM e estado local sem F5
+      
       if (consulta) {
         consulta.status = novoStatus;
         consulta.observação = novaObservacao;
@@ -294,9 +274,6 @@ async function handleSalvarAtendimento(event) {
   }
 }
 
-/**
- * Exibe modal com prontuário detalhado e destaque em alergias
- */
 function abrirProntuarioRapido(pacienteId, pacienteNome) {
   const p = listaPacientes.find(item => item.id === pacienteId || (item.nome && item.nome === pacienteNome)) || {
     nome: pacienteNome || 'Paciente',

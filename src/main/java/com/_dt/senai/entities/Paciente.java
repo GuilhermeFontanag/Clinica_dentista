@@ -1,39 +1,47 @@
 package com._dt.senai.entities;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
+
 @Entity
 public class Paciente {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-
-    private int id;
+    private Integer id;
 
     private String nome;
 
-    private String cro;
+    private String cpf;
 
-    private String especialidade;
+    private String email;
 
     private String telefone;
 
-    private String ativo;
+    private LocalDate data_nascimento;
 
-    public Paciente(String ativo, String telefone, String especialidade, String cro, String nome, int id) {
-        this.ativo = ativo;
-        this.telefone = telefone;
-        this.especialidade = especialidade;
-        this.cro = cro;
-        this.nome = nome;
+    private String convenio;
+
+    private String observacoes_clinicas;
+
+    public Paciente(Integer id, String nome, String cpf, String email, String telefone, LocalDate data_nascimento, String convenio, String observacoes_clinicas) {
         this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.telefone = telefone;
+        this.data_nascimento = data_nascimento;
+        this.convenio = convenio;
+        this.observacoes_clinicas = observacoes_clinicas;
     }
-    public Paciente(){}
 
-    public int getId() {
+    public Paciente() {}
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -45,20 +53,20 @@ public class Paciente {
         this.nome = nome;
     }
 
-    public String getCro() {
-        return cro;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCro(String cro) {
-        this.cro = cro;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public String getEspecialidade() {
-        return especialidade;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getTelefone() {
@@ -69,11 +77,27 @@ public class Paciente {
         this.telefone = telefone;
     }
 
-    public String getAtivo() {
-        return ativo;
+    public LocalDate getData_nascimento() {
+        return data_nascimento;
     }
 
-    public void setAtivo(String ativo) {
-        this.ativo = ativo;
+    public void setData_nascimento(LocalDate data_nascimento) {
+        this.data_nascimento = data_nascimento;
+    }
+
+    public String getConvenio() {
+        return convenio;
+    }
+
+    public void setConvenio(String convenio) {
+        this.convenio = convenio;
+    }
+
+    public String getObservacoes_clinicas() {
+        return observacoes_clinicas;
+    }
+
+    public void setObservacoes_clinicas(String observacoes_clinicas) {
+        this.observacoes_clinicas = observacoes_clinicas;
     }
 }

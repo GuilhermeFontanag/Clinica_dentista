@@ -1,27 +1,25 @@
 package com._dt.senai.entities;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
-import java.time.ZonedDateTime;
 
 @Entity
-public class Recepcionista {
+public class Consulta {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private int id;
+    private Integer id;
+    private Integer id_paciente;
+    private Integer id_dentista;
     private String nome;
     private String matricula;
     private String turno;
-    private int id_dentista;
-    private int id_paciente;
     private LocalDate data;
     private String procedimento;
     private String status;
     private String observação;
 
-    public Recepcionista(int id, String nome, String matricula, String turno, int id_dentista, int id_paciente, LocalDate data, String procedimento, String status, String observação) {
+    public Consulta(Integer id, String nome, String matricula, String turno, Integer id_dentista, Integer id_paciente, LocalDate data, String procedimento, String status, String observação) {
         this.id = id;
         this.nome = nome;
         this.matricula = matricula;
@@ -34,14 +32,13 @@ public class Recepcionista {
         this.observação = observação;
     }
 
-    public Recepcionista() {
-    }
+    public Consulta() {}
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -69,19 +66,19 @@ public class Recepcionista {
         this.turno = turno;
     }
 
-    public int getId_dentista() {
+    public Integer getId_dentista() {
         return id_dentista;
     }
 
-    public void setId_dentista(int id_dentista) {
+    public void setId_dentista(Integer id_dentista) {
         this.id_dentista = id_dentista;
     }
 
-    public int getId_paciente() {
+    public Integer getId_paciente() {
         return id_paciente;
     }
 
-    public void setId_paciente(int id_paciente) {
+    public void setId_paciente(Integer id_paciente) {
         this.id_paciente = id_paciente;
     }
 

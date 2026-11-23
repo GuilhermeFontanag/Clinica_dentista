@@ -1,17 +1,10 @@
-/**
- * CLÍNICA ODONTOLÓGICA SORRISO CLARO - MÓDULO CENTRAL DE API
- * Comunicação direta com a API REST Spring Boot (localhost:8080)
- */
 
-// Detecção inteligente de baseURL (mesma origem se rodando em localhost:8080 ou apontamento explícito)
+
 const API_BASE_URL = (
   window.location.origin.includes(':8080') || 
   (window.location.protocol === 'http:' && window.location.port === '8080')
 ) ? '' : 'http://localhost:8080';
 
-/**
- * Utilitário central de requisição HTTP com timeout e tratamento de erros
- */
 async function apiRequest(endpoint, options = {}) {
   const url = `${API_BASE_URL}${endpoint}`;
   
@@ -26,20 +19,20 @@ async function apiRequest(endpoint, options = {}) {
     headers,
   };
 
-  // Se houver body e for objeto, converte para JSON
+  
   if (config.body && typeof config.body === 'object' && !(config.body instanceof FormData)) {
     config.body = JSON.stringify(config.body);
   }
 
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 8000); // 8s timeout
+    const timeoutId = setTimeout(() => controller.abort(), 8000); 
     config.signal = controller.signal;
 
     const response = await fetch(url, config);
     clearTimeout(timeoutId);
 
-    // Tenta ler como JSON ou texto se não for JSON
+    
     const contentType = response.headers.get('content-type') || '';
     let data;
     if (contentType.includes('application/json')) {
@@ -69,11 +62,8 @@ async function apiRequest(endpoint, options = {}) {
   }
 }
 
-/**
- * Endpoints e Serviços por Entidade
- */
 const ClinicaAPI = {
-  // Teste de conexão com o backend
+  
   async testConnection() {
     try {
       const res = await apiRequest('/api/paciente', { method: 'GET' });
@@ -83,33 +73,8 @@ const ClinicaAPI = {
     }
   },
 
-  // 1. Pacientes (Nota: mapeado para /api/dentista onde residem os campos de ficha clínica/cpf no backend)
+  
   pacientes: {
-    async listar() {
-      return await apiRequest('/api/dentista', { method: 'GET' });
-    },
-    async buscarPorId(id) {
-      return await apiRequest(`/api/dentista/${id}`, { method: 'GET' });
-    },
-    async criar(dados) {
-      return await apiRequest('/api/dentista', {
-        method: 'POST',
-        body: dados
-      });
-    },
-    async atualizar(id, dados) {
-      return await apiRequest(`/api/dentista/${id}`, {
-        method: 'PUT',
-        body: dados
-      });
-    },
-    async deletar(id) {
-      return await apiRequest(`/api/dentista/${id}`, { method: 'DELETE' });
-    }
-  },
-
-  // 2. Dentistas (Nota: mapeado para /api/paciente onde residem os campos de CRO/especialidade no backend)
-  dentistas: {
     async listar() {
       return await apiRequest('/api/paciente', { method: 'GET' });
     },
@@ -133,41 +98,63 @@ const ClinicaAPI = {
     }
   },
 
-  // 3. Consultas e Recepcionistas (/api/recepcionista)
-  consultas: {
+  
+  dentistas: {
     async listar() {
-      return await apiRequest('/api/recepcionista', { method: 'GET' });
+      return await apiRequest('/api/dentista', { method: 'GET' });
     },
     async buscarPorId(id) {
-      return await apiRequest(`/api/recepcionista/${id}`, { method: 'GET' });
+      return await apiRequest(`/api/dentista/${id}`, { method: 'GET' });
     },
     async criar(dados) {
-      return await apiRequest('/api/recepcionista', {
+      return await apiRequest('/api/dentista', {
         method: 'POST',
         body: dados
       });
     },
     async atualizar(id, dados) {
-      return await apiRequest(`/api/recepcionista/${id}`, {
+      return await apiRequest(`/api/dentista/${id}`, {
         method: 'PUT',
         body: dados
       });
     },
     async deletar(id) {
-      return await apiRequest(`/api/recepcionista/${id}`, { method: 'DELETE' });
+      return await apiRequest(`/api/dentista/${id}`, { method: 'DELETE' });
+    }
+  },
+
+  
+  consultas: {
+    async listar() {
+      return await apiRequest('/api/consulta', { method: 'GET' });
+    },
+    async buscarPorId(id) {
+      return await apiRequest(`/api/consulta/${id}`, { method: 'GET' });
+    },
+    async criar(dados) {
+      return await apiRequest('/api/consulta', {
+        method: 'POST',
+        body: dados
+      });
+    },
+    async atualizar(id, dados) {
+      return await apiRequest(`/api/consulta/${id}`, {
+        method: 'PUT',
+        body: dados
+      });
+    },
+    async deletar(id) {
+      return await apiRequest(`/api/consulta/${id}`, { method: 'DELETE' });
     }
   }
 };
 
-/**
- * Gerenciamento de Sessão de Usuário (Simulação sem validação conforme solicitado)
- */
 const UserSession = {
   KEY: 'sorriso_claro_active_user',
 
   login(role, nome = '', identificador = '') {
     const sessionData = {
-      role: role.toLowerCase(), // 'paciente', 'dentista', 'recepcionista'
+      role: role.toLowerCase(), 
       nome: nome || this.getDefaultName(role),
       identificador: identificador || '001',
       loginTime: new Date().toISOString()

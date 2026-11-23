@@ -10,7 +10,7 @@
 <body class="auth-page">
 
   <div class="auth-container">
-    <!-- Header do Card -->
+    
     <header class="auth-header">
       <div style="display:flex; justify-content:center; margin-bottom:0.5rem;">
         <svg width="44" height="44" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -21,7 +21,7 @@
       <p>Sistema Integrado de Gestão Odontológica</p>
     </header>
 
-    <!-- Abas de Navegação -->
+    
     <div class="auth-tabs">
       <button type="button" class="auth-tab-btn active" id="tab-btn-login" onclick="switchAuthTab('login')">
         Acessar Perfil
@@ -31,7 +31,7 @@
       </button>
     </div>
 
-    <!-- Conteúdo da Aba 1: Login Sem Validação -->
+    
     <div class="auth-body" id="tab-login">
       <p style="margin-bottom:1.25rem; font-size:0.92rem; text-align:center;">
         Selecione o seu perfil para entrar diretamente no sistema:
@@ -85,7 +85,7 @@
       </form>
     </div>
 
-    <!-- Conteúdo da Aba 2: Criar Novo Usuário -->
+    
     <div class="auth-body" id="tab-register" style="display:none;">
       <p style="margin-bottom:1.25rem; font-size:0.92rem; text-align:center;">
         Selecione o tipo de usuário que deseja cadastrar na API:
@@ -123,10 +123,10 @@
         </label>
       </div>
 
-      <!-- Container do Formulário Dinâmico de Cadastro -->
+      
       <form id="form-register" onsubmit="handleRegisterSubmit(event)">
         <div id="dynamic-register-fields">
-          <!-- Injetado via JavaScript de acordo com o papel escolhido -->
+          
         </div>
 
         <div id="register-feedback" style="margin-top:1rem;"></div>
