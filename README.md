@@ -1,8 +1,6 @@
 #  Clínica Odontológica Sorriso Claro
 
-> Sistema Integrado de Gestão Odontológica — Aplicação Web Multipage conectada à API REST Spring Boot.
-
----
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-%234479A1.svg?style=for-the-badge&logo=mysql&logoColor=white) ![Postman](https://img.shields.io/badge/Postman-%23FF6C37.svg?style=for-the-badge&logo=postman&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS](https://img.shields.io/badge/css-%23663399.svg?style=for-the-badge&logo=css&logoColor=white)
 
 ##  1. História da Clínica Odontológica "Sorriso Claro"
 
@@ -25,61 +23,55 @@ Para solucionar esses desafios, foi desenvolvido este sistema completo: uma **AP
 
 ---
 
-## 🏛️ 2. Arquitetura da Aplicação Multipage
+##  2. Arquitetura da Aplicação Multipage
 
 O frontend está localizado diretamente em `src/main/resources/static/`, dividindo as jornadas de uso em **4 páginas especializadas**:
 
 ```
 ├── src/main/resources/static/
-│   ├── index.html           # Página 1: Login Sem Validação & Cadastro Multi-Perfil
-│   ├── paciente.html        # Página 2: Portal do Paciente (Consultas & Meus Dados)
-│   ├── dentista.html        # Página 3: Painel do Dentista (Consultório & Prontuário)
-│   ├── recepcionista.html   # Página 4: Recepção & Central de Agendamentos (CRUD Geral)
+│   ├── index.html           # Página 1: Login 
+│   ├── paciente.html        # Página 2: Portal do Paciente (
+│   ├── dentista.html        # Página 3: Painel do Dentista 
+│   ├── recepcionista.html   # Página 4: Recepção 
 │   ├── css/
-│   │   └── style.css        # Sistema de Design em Tons de Azul, Modais, Skeletons e Toasts
+│   │   └── style.css       
 │   └── js/
-│       ├── api.js           # Cliente HTTP central e mapeamento dos endpoints da API
-│       ├── ui.js            # Utilitários de interface: Toasts, Modais, Skeletons e Formatadores
-│       ├── login.js         # Controle da seleção de perfil e cadastro
-│       ├── paciente.js      # Lógica e reatividade do portal do paciente
-│       ├── dentista.js      # Lógica clínica, agenda do dia e prontuário com alertas
-│       └── recepcionista.js # Lógica de agendamento, remarcação e gestão geral
+│       ├── api.js           
+│       ├── ui.js           
+│       ├── login.js         
+│       ├── paciente.js      
+│       ├── dentista.js      
+│       └── recepcionista.js 
 ```
 
 ### Detalhamento das 4 Páginas:
 
-1. **Página 1: Acesso & Cadastro (`index.html`)**
-   - **Login sem validação:** Permite selecionar com um clique se você é **Paciente**, **Dentista** ou **Recepcionista** e entrar imediatamente no sistema.
+1. ** Acesso & Cadastro (`index.html`)**
+   - **Login :** Permite selecionar com um clique se você é **Paciente**, **Dentista** ou **Recepcionista** e entrar imediatamente no sistema.
    - **Criar Novo Usuário:** Formulário dinâmico que permite cadastrar novos usuários para qualquer um dos 3 papéis diretamente no banco de dados da API.
-2. **Página 2: Portal do Paciente (`paciente.html`)**
+
+2. ** Portal do Paciente (`paciente.html`)**
    - Visualização da próxima consulta e histórico completo de atendimentos.
    - Agendamento autônomo de novas consultas com escolha de dentista e procedimento.
    - Cancelamento de horários com liberação em tempo real na clínica.
    - Consulta e atualização dos dados cadastrais (telefone, convênio e queixas clínicas).
-3. **Página 3: Painel do Dentista (`dentista.html`)**
+
+3. ** Painel do Dentista (`dentista.html`)**
    - Grade de atendimentos do dia com horários e procedimentos.
    - **Verificação rápida de alertas clínicos:** Destaque visual imediato para alergias a medicamentos (penicilina, dipirona, anestésicos com vasoconstritor) ou condições como hipertensão.
    - Modal de evolução clínica para registrar o procedimento executado e marcar a consulta como "Concluída".
-4. **Página 4: Recepção & Central de Agendamentos (`recepcionista.html`)**
+
+4. **Recepção & Central de Agendamentos (`recepcionista.html`)**
    - **CRUD completo de Consultas:** Agendamento, remarcação de datas, alteração de status e exclusão com diálogo de confirmação.
    - **CRUD completo de Pacientes:** Cadastro de novos pacientes na chegada à clínica, atualização de telefone/convênio e exclusão com proteção.
    - Filtros dinâmicos por status (Agendadas, Concluídas, Canceladas) e busca instantânea por nome ou CPF.
 
 ---
 
-## 3. Padrões de Design UI/UX (Tons de Azul Odontológico)
-
-A identidade visual foi construída com foco na **tranquilidade, limpeza, confiança e acessibilidade**:
-- **Azul Clínico Profissional (`#0369a1` / `#0284c7`):** Transmite estabilidade, higiene e seriedade médica.
-- **Azul Celeste Suave (`#e0f2fe` / `#f0f9ff`):** Fundos arejados e confortáveis para leitura prolongada.
-- **Slate Escuro (`#0f172a` / `#1e293b`):** Tipografia de alto contraste sem cansar a visão.
-- **Alertas de Segurança:** Âmbar suave (`#d97706`) para alergias do paciente e Esmeralda (`#059669`) para confirmações de sucesso.
-- **Zero Roxo:** Regra de design estrita aplicada (sem tons violetas/púrpuras).
-
----
 
 
-##  4. Mapeamento com a API Spring Boot
+
+##  3. Mapeamento com a API Spring Boot
 
 A camada de serviço (`src/main/resources/static/js/api.js`) mapeia as rotas REST dos controllers em `src/main`:
 
@@ -98,7 +90,7 @@ A camada de serviço (`src/main/resources/static/js/api.js`) mapeia as rotas RES
 
 ---
 
-##  6. Como Instalar e Rodar no Computador
+##  4. Como Instalar e Rodar no Computador
 
 ### Pré-requisitos
 - **Java JDK:** Versão 17, 21 ou 25 instalada no sistema (`java -version`).
@@ -157,9 +149,9 @@ http://localhost:8080
 
 ---
 
-## 🧪 7. Roteiro Rápido de Testes
+## 5. Roteiro Rápido de Testes
 
-1. **Acesso e Seleção de Perfil:**
+1. **Acesso**
    - Acesse `http://localhost:8080`.
    - Escolha o perfil **Recepção** e clique em **Entrar no Sistema**.
 2. **Cadastro de Novo Paciente:**
@@ -181,5 +173,5 @@ http://localhost:8080
 
 ---
 
-## 👥 Equipe e Créditos
+##  Equipe e Créditos
 
