@@ -2,38 +2,39 @@ package com._dt.senai.entities;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 @Entity
-public class Dentista{
+public class Dentista {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-   private int id;
-   private String nome;
-   private String cpf;
-   private String email;
-   private String telefone;
-   private LocalDate data_nascimento;
-   private String convenio;
-   private String observacoes_clinicas;
+    private Integer id;
 
-    public Dentista(int id, String nome, String cpf, String email, String telefone, LocalDate data_nascimento, String convenio, String observacoes_clinicas) {
+    private String nome;
+
+    private String cro;
+
+    private String especialidade;
+
+    private String telefone;
+
+    private String ativo;
+
+    public Dentista(Integer id, String nome, String cro, String especialidade, String telefone, String ativo) {
         this.id = id;
         this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
+        this.cro = cro;
+        this.especialidade = especialidade;
         this.telefone = telefone;
-        this.data_nascimento = data_nascimento;
-        this.convenio = convenio;
-        this.observacoes_clinicas = observacoes_clinicas;
+        this.ativo = ativo;
     }
 
-    public Dentista(){}
+    public Dentista() {}
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -41,24 +42,24 @@ public class Dentista{
         return nome;
     }
 
-    public void setNome (String nome) {
-        this.nome= nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getCro() {
+        return cro;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setCro(String cro) {
+        this.cro = cro;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEspecialidade() {
+        return especialidade;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEspecialidade(String especialidade) {
+        this.especialidade = especialidade;
     }
 
     public String getTelefone() {
@@ -69,27 +70,11 @@ public class Dentista{
         this.telefone = telefone;
     }
 
-    public LocalDate getData_nascimento() {
-        return data_nascimento;
+    public String getAtivo() {
+        return ativo;
     }
 
-    public void setData_nascimento(LocalDate data_nascimento) {
-        this.data_nascimento = data_nascimento;
-    }
-
-    public String getConvenio() {
-        return convenio;
-    }
-
-    public void setConvenio(String convenio) {
-        this.convenio = convenio;
-    }
-
-    public String getObservacoes_clinicas() {
-        return observacoes_clinicas;
-    }
-
-    public void setObservacoes_clinicas(String observacoes_clinicas) {
-        this.observacoes_clinicas = observacoes_clinicas;
+    public void setAtivo(String ativo) {
+        this.ativo = ativo;
     }
 }
