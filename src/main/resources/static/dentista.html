@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <!-- Barra de Navegação Superior Multipage -->
+  
   <header class="site-header">
     <div class="header-container">
       <a href="index.html" class="brand-logo">
@@ -29,12 +29,12 @@
       </nav>
 
       <div class="user-badge-container">
-        <!-- Renderizado dinamicamente via UI.setupNavigation -->
+        
       </div>
     </div>
   </header>
 
-  <!-- Conteúdo Principal -->
+  
   <main class="main-wrapper">
     <section class="page-hero">
       <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
@@ -53,7 +53,7 @@
       </div>
     </section>
 
-    <!-- Stat Cards do Consultório -->
+    
     <div class="grid-dashboard">
       <div class="stat-card">
         <div class="stat-icon">
@@ -92,7 +92,7 @@
       </div>
     </div>
 
-    <!-- Seção 1: Fila de Atendimento do Dentista -->
+    
     <div class="card">
       <div class="card-header">
         <h2 class="card-title">
@@ -105,11 +105,11 @@
       </div>
 
       <div id="dentista-consultas-container">
-        <!-- Renderizado dinamicamente via dentista.js -->
+        
       </div>
     </div>
 
-    <!-- Seção 2: Busca Rápida de Prontuários e Alertas de Pacientes -->
+    
     <div class="card" style="margin-top:2rem;">
       <div class="card-header">
         <h2 class="card-title">
@@ -128,12 +128,12 @@
       </p>
 
       <div id="dentista-pacientes-container">
-        <!-- Renderizado dinamicamente via dentista.js -->
+        
       </div>
     </div>
   </main>
 
-  <!-- Modal: Atualizar Atendimento Clínico (Status e Observações) -->
+  
   <div class="modal-backdrop" id="modal-atendimento">
     <div class="modal-dialog">
       <div class="modal-header">
@@ -172,7 +172,7 @@
     </div>
   </div>
 
-  <!-- Modal: Prontuário Rápido com Alertas em Destaque -->
+  
   <div class="modal-backdrop" id="modal-prontuario-detalhe">
     <div class="modal-dialog">
       <div class="modal-header">
@@ -180,7 +180,7 @@
         <button class="modal-close" onclick="UI.closeModal('modal-prontuario-detalhe')">✕</button>
       </div>
       <div class="modal-body" id="prontuario-detalhe-body">
-        <!-- Injetado dinamicamente via JS -->
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary btn-sm" onclick="UI.closeModal('modal-prontuario-detalhe')">Fechar Ficha</button>
@@ -188,7 +188,7 @@
     </div>
   </div>
 
-  <!-- Rodapé -->
+  
   <footer class="site-footer">
     <div class="footer-container">
       <p>© 2026 Clínica Odontológica Sorriso Claro. Todos os direitos reservados.</p>

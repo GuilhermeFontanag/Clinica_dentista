@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <!-- Barra de Navegação Superior Multipage -->
+  
   <header class="site-header">
     <div class="header-container">
       <a href="index.html" class="brand-logo">
@@ -29,12 +29,12 @@
       </nav>
 
       <div class="user-badge-container">
-        <!-- Renderizado dinamicamente via UI.setupNavigation -->
+        
       </div>
     </div>
   </header>
 
-  <!-- Conteúdo Principal -->
+  
   <main class="main-wrapper">
     <section class="page-hero">
       <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
@@ -59,7 +59,7 @@
       </div>
     </section>
 
-    <!-- Stat Cards da Recepção -->
+    
     <div class="grid-dashboard">
       <div class="stat-card">
         <div class="stat-icon">
@@ -98,7 +98,7 @@
       </div>
     </div>
 
-    <!-- Seção 1: Gestão de Agendamentos (Consultas) -->
+    
     <div class="card">
       <div class="card-header">
         <h2 class="card-title">
@@ -124,11 +124,11 @@
       </div>
 
       <div id="recepcao-consultas-container">
-        <!-- Injetado dinamicamente via recepcionista.js -->
+        
       </div>
     </div>
 
-    <!-- Seção 2: Cadastro e Gestão de Pacientes -->
+    
     <div class="card" style="margin-top:2rem;">
       <div class="card-header">
         <h2 class="card-title">
@@ -144,12 +144,12 @@
       </div>
 
       <div id="recepcao-pacientes-container">
-        <!-- Injetado dinamicamente via recepcionista.js -->
+        
       </div>
     </div>
   </main>
 
-  <!-- Modal: Cadastrar Novo Paciente (POST /api/dentista) -->
+  
   <div class="modal-backdrop" id="modal-novo-paciente">
     <div class="modal-dialog">
       <div class="modal-header">
@@ -204,7 +204,7 @@
     </div>
   </div>
 
-  <!-- Modal: Agendar / Remarcar Consulta -->
+  
   <div class="modal-backdrop" id="modal-consulta">
     <div class="modal-dialog">
       <div class="modal-header">
@@ -218,7 +218,7 @@
           <div class="form-group">
             <label class="form-label">Paciente <span class="required">*</span></label>
             <select name="paciente_selecao" id="consulta-paciente-select" class="form-control" required>
-              <!-- Preenchido dinamicamente com pacientes cadastrados -->
+              
             </select>
           </div>
 
@@ -226,7 +226,7 @@
             <div class="form-group">
               <label class="form-label">Dentista Responsável <span class="required">*</span></label>
               <select name="id_dentista" id="consulta-dentista-select" class="form-control" required>
-                <!-- Preenchido dinamicamente -->
+                
               </select>
             </div>
             <div class="form-group">
@@ -270,7 +270,7 @@
     </div>
   </div>
 
-  <!-- Modal: Editar Dados do Paciente (PUT /api/dentista/{id}) -->
+  
   <div class="modal-backdrop" id="modal-editar-paciente-recepcao">
     <div class="modal-dialog">
       <div class="modal-header">
@@ -316,7 +316,7 @@
     </div>
   </div>
 
-  <!-- Rodapé -->
+  
   <footer class="site-footer">
     <div class="footer-container">
       <p>© 2026 Clínica Odontológica Sorriso Claro. Todos os direitos reservados.</p>
